@@ -124,7 +124,7 @@ def reply_to_comment(debug_mode=False):
     """
     global comment_count
 
-    for submission in reddit.subreddit('cornell').new(limit=500):
+    for submission in reddit.subreddit('cornell').new(limit=25):
         for comment in submission.comments:
             if "!classBot" in comment.body and (not hasReplied(comment)):
                 classes = re.findall(r'\d{4}', comment.body)
@@ -156,7 +156,7 @@ def comment_on_post(debug_mode=False):
     global checked_comment
     global comment_count
 
-    for submission in reddit.subreddit('cornell').new(limit=25): # change to top?
+    for submission in reddit.subreddit('cornell').new(limit=50): # change to top?
         if not hasCommented(submission):
             classes = re.findall(r'\d{4}', submission.title + " " + submission.selftext)
             unique_classes = remove_duplicates(classes)
@@ -213,7 +213,7 @@ def remove_bad_comments(threshold=0, num_to_check=15):
 # Loop to constantly check the most recent 25 posts to see if it's neccesary for the bot to comment
 while True:
     comment_on_post(debug_mode=True)
-    # reply_to_comment(debug_mode=True) #reduce number of comments scanned !!
+    reply_to_comment(debug_mode=True)
     remove_bad_comments()
     print("Sleeping now")
     break
