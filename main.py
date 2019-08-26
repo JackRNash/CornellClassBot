@@ -5,7 +5,7 @@ import re
 import passwords # Custom file with the 3 variables specified below
 
 # Create an instance of a reddit account
-USERNAME = 'Cornell_class_Bot'
+USERNAME = passwords.username
 
 reddit = praw.Reddit(client_id=passwords.client_id,
                      client_secret=passwords.client_secret,
@@ -26,8 +26,8 @@ output = ""
 invalid_nums = ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1999', '2000', '2001', '2002', '2003',
                '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016',
                '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '1000', '3000', '4000',
-               '5000', '6000'] # turn into hashset!
-# invalid_nums_dict = {class:1 for class in invalid_nums}
+               '5000', '6000']
+invalid_nums = {class_: 1 for class_ in invalid_nums} # turn into hashtable!
 
 def remove_duplicates(x):
     """
@@ -123,7 +123,7 @@ def reply_to_comment(debug_mode=False):
     debug_mode - if True, doesn't reply to comments
     """
     global comment_count
-    global output
+
     for submission in reddit.subreddit('cornell').new(limit=500):
         for comment in submission.comments:
             if "!classBot" in comment.body and (not hasReplied(comment)):
@@ -155,7 +155,6 @@ def comment_on_post(debug_mode=False):
     global checked_posts
     global checked_comment
     global comment_count
-    global output
 
     for submission in reddit.subreddit('cornell').new(limit=25): # change to top?
         if not hasCommented(submission):
