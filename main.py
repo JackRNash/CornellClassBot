@@ -5,7 +5,7 @@ import re
 import passwords # Custom file with the 3 variables specified below
 
 # Create an instance of a reddit account
-USERNAME = 'internetguy19'#'Cornell_class_Bot'
+USERNAME = 'Cornell_class_Bot'
 
 reddit = praw.Reddit(client_id=passwords.client_id,
                      client_secret=passwords.client_secret,
@@ -52,9 +52,6 @@ def filter_nums(x):
     Output:
     filtered list of numbers containing no elements that are in invalid_nums
     """
-    # for num in x:
-    #     if num in invalid_nums:
-    #         x.remove(num) # don't remove while iterating over...
     return [num for num in x if num not in invalid_nums]
 
 
@@ -70,7 +67,6 @@ def find_posts(classes, url):
     Output:
     ???
     """
-    # global output #??
     response = ""
     num = 0
     print("Searching for related material")
