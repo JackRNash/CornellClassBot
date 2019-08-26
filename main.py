@@ -65,7 +65,7 @@ def find_posts(classes, url):
     url - url to the post being commented on as a string
 
     Output:
-    ???
+    string that the bot will comment
     """
     response = ""
     num = 0
